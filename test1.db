@@ -1,6 +1,6 @@
 $TTL	604800
 @	IN	SOA	localhost. root.localhost. (
-			      61		; Serial
+			75      		; Serial
 			 604800		; Refresh
 			  86400		; Retry
 			2419200		; Expire
