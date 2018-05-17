@@ -1,0 +1,125 @@
+logging {
+        channel file_general_log {
+                file "/var/named/data/general.log" versions 3 size 10M;
+		severity info;
+		print-severity yes;
+                print-category yes;
+                print-time yes;
+        };
+        channel query_logging {
+                file "/var/named/data/named_query.log" versions 3 size 10M;
+                severity info;
+                print-severity yes;
+                print-category yes;
+                print-time yes; 
+        };
+        channel file_client_log {
+                file "/var/named/data/client.log" versions 3 size 1024k;
+                severity info;
+                print-severity yes;
+                print-category yes;
+                print-time yes;
+        };
+        channel file_config_log {
+                file "/var/named/data/config.log" versions 3 size 1024k;
+                severity debug 3;
+                print-severity yes;
+                print-category yes;
+                print-time yes;
+        };
+        channel file_database_log {
+                file "/var/named/data/database.log" versions 3 size 1024k;
+                severity info;
+                print-severity yes;
+                print-category yes;
+                print-time yes;
+        };
+        channel file_dnssec_log {
+                file "/var/named/data/dnssec.log" versions 3 size 1024k;
+                severity info;
+                print-severity yes;
+                print-category yes;
+                print-time yes;
+        };
+        channel file_lame-servers_log {
+                file "/var/named/data/lame-servers.log" versions 3 size 1024k;
+                severity info;
+                print-severity yes;
+                print-category yes;
+                print-time yes;
+        };
+        channel file_notify_log {
+                file "/var/named/data/notify.log" versions 3 size 1024k;
+                severity info;
+                print-severity yes;
+                print-category yes;
+                print-time yes;
+        };
+        channel file_resolver_log {
+                file "/var/named/data/resolver.log" versions 3 size 1024k;
+                severity info;
+                print-severity yes;
+                print-category yes;
+                print-time yes;
+        };
+        channel file_update_log {
+                file "/var/named/data/update.log" versions 3 size 1024k;
+                severity info;
+                print-severity yes;
+                print-category yes;
+                print-time yes;
+        };
+        channel file_dynamic_log {
+                file "/var/named/data/dynamic.log" versions 3 size 1024k;
+                severity info;
+                print-severity yes;
+                print-category yes;
+                print-time yes;
+        };
+        channel file_xfer-in_log {
+                file "/var/named/data/xfer-in.log" versions 3 size 1024k;
+                severity info;
+                print-severity yes;
+                print-category yes;
+                print-time yes;
+        };
+        channel file_xfer-out_log {
+                file "/var/named/data/xfer-out.log" versions 3 size 1024k;
+                severity info;
+                print-severity yes;
+                print-category yes;
+                print-time yes;
+        };
+
+
+        // The general category contains all BIND messages that aren't explicitly classified
+        category general { file_general_log; };
+        // Processing client requests
+        category client { file_client_log; };
+        // Processing configuration file
+        category config { file_config_log; };
+        // Messages relating to BIND's internal database
+        category database { file_database_log; };
+        // Processing DNSSEC-signed responses
+        category dnssec { file_dnssec_log; };
+        // Detection of bad delegation
+        category lame-servers { null; };
+        // Network operations
+        category network { file_general_log; };
+        // Asynchronous zone change notifications
+        category notify { file_notify_log; };
+        // Query logging
+        category queries { query_logging; };
+        // Name resolution, including the processing of recursive queries from resolvers
+        category resolver { file_resolver_log; };
+        // Approved/unapproved requests
+        category security { file_general_log; };
+        // Dynamic update events
+        category update { file_dynamic_log; };
+        // Unapproved dynamic updates
+        category update-security { file_update_log; };
+        // Zone transfers from remote nameservers to the local nameserver
+        category xfer-in { file_xfer-in_log; };
+        // Zone transfers from the local nameserver to remote nameservers
+        category xfer-out { file_xfer-out_log; };
+};
